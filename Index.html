@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Pilo</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="bg-gradient-to-br from-amber-100 to-orange-200 flex items-center justify-center min-h-screen">
+    <div
+      id="container"
+      class="flex flex-col items-center space-y-6 bg-white/80 backdrop-blur-md px-12 py-10 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+    >
+      <!-- Coffee Icon -->
+      <div id="coffee-icon" class="text-amber-700"></div>
+
+      <!-- Heading -->
+      <h1
+        id="title"
+        class="text-6xl font-extrabold text-amber-900 tracking-wide"
+      >
+        Coffee Pilo
+      </h1>
+
+      <!-- Button -->
+      <button
+        id="btn"
+        class="px-6 py-3 bg-amber-700 text-white rounded-xl text-lg font-semibold shadow-md hover:bg-amber-800 transition-colors"
+      >
+        ☕ Get Coffee
+      </button>
+    </div>
+
+    <script>
+      // Load coffee icon
+      lucide.createIcons();
+      document.getElementById("coffee-icon").innerHTML =
+        '<i data-lucide="coffee" class="w-16 h-16"></i>';
+      lucide.createIcons();
+
+      // Framer Motion animation
+      const { animate } = window.framerMotion;
+
+      // Animate container
+      animate(
+        "#container",
+        { opacity: [0, 1], y: [40, 0] },
+        { duration: 1, ease: "easeOut" }
+      );
+
+      // Animate coffee icon on hover
+      const icon = document.getElementById("coffee-icon");
+      icon.addEventListener("mouseenter", () => {
+        animate(icon, { rotate: [0, 20, 0], scale: [1, 1.2, 1] }, { duration: 0.6 });
+      });
+
+      // Animate title on hover
+      const title = document.getElementById("title");
+      title.addEventListener("mouseenter", () => {
+        animate(title, { scale: [1, 1.1, 1] }, { duration: 0.5 });
+      });
+
+      // Animate button on hover
+      const btn = document.getElementById("btn");
+      btn.addEventListener("mouseenter", () => {
+        animate(btn, { scale: [1, 1.05, 1] }, { duration: 0.3 });
+      });
+    </script>
+  </body>
+</html>
