@@ -8,8 +8,8 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Framer Motion -->
-    <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -20,7 +20,9 @@
       class="flex flex-col items-center space-y-6 bg-white/80 backdrop-blur-md px-12 py-10 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
     >
       <!-- Coffee Icon -->
-      <div id="coffee-icon" class="text-amber-700"></div>
+      <div id="coffee-icon" class="text-amber-700">
+        <i data-lucide="coffee" class="w-16 h-16"></i>
+      </div>
 
       <!-- Heading -->
       <h1
@@ -40,38 +42,50 @@
     </div>
 
     <script>
-      // Load coffee icon
-      lucide.createIcons();
-      document.getElementById("coffee-icon").innerHTML =
-        '<i data-lucide="coffee" class="w-16 h-16"></i>';
+      // load icons
       lucide.createIcons();
 
-      // Framer Motion animation
-      const { animate } = window.framerMotion;
-
-      // Animate container
-      animate(
-        "#container",
-        { opacity: [0, 1], y: [40, 0] },
-        { duration: 1, ease: "easeOut" }
-      );
-
-      // Animate coffee icon on hover
-      const icon = document.getElementById("coffee-icon");
-      icon.addEventListener("mouseenter", () => {
-        animate(icon, { rotate: [0, 20, 0], scale: [1, 1.2, 1] }, { duration: 0.6 });
+      // entrance animation
+      anime({
+        targets: "#container",
+        translateY: [50, 0],
+        opacity: [0, 1],
+        duration: 1200,
+        easing: "easeOutExpo",
       });
 
-      // Animate title on hover
-      const title = document.getElementById("title");
+      // icon hover animation
+      const coffeeIcon = document.querySelector("#coffee-icon");
+      coffeeIcon.addEventListener("mouseenter", () => {
+        anime({
+          targets: coffeeIcon,
+          rotate: [0, 20, -20, 0],
+          scale: [1, 1.2, 1],
+          duration: 800,
+          easing: "easeInOutSine",
+        });
+      });
+
+      // title hover animation
+      const title = document.querySelector("#title");
       title.addEventListener("mouseenter", () => {
-        animate(title, { scale: [1, 1.1, 1] }, { duration: 0.5 });
+        anime({
+          targets: title,
+          scale: [1, 1.1, 1],
+          duration: 500,
+          easing: "easeInOutQuad",
+        });
       });
 
-      // Animate button on hover
-      const btn = document.getElementById("btn");
+      // button hover animation
+      const btn = document.querySelector("#btn");
       btn.addEventListener("mouseenter", () => {
-        animate(btn, { scale: [1, 1.05, 1] }, { duration: 0.3 });
+        anime({
+          targets: btn,
+          scale: [1, 1.05, 1],
+          duration: 300,
+          easing: "easeInOutQuad",
+        });
       });
     </script>
   </body>
